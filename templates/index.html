@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cupcakes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+</head>
+<body>
+    <h1 class="text-center">Cupcakes</h1>
+
+    <div class="mx-5">
+        <ul class="cupcakes-list d-flex flex-wrap justify-content-center px-5" style="list-style: none;">
+            
+        </ul>
+    </div>
+
+    <hr>
+
+    <form id="cupcake-add-form" action="/api/cupcakes" method="POST" class="text-center">
+        {{ form.hidden_tag() }}
+      
+        {% for field in form
+               if field.widget.input_type != 'hidden' %}
+      
+          <p>
+            {{ field.label }}
+            {{ field }}
+      
+            {% for error in field.errors %}
+              {{ error }}
+            {% endfor %}
+          </p>
+      
+        {% endfor %}
+      
+        <button type="submit">Submit</button>
+    </form>
+
+    <script
+        src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+        integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+        crossorigin="anonymous">
+    </script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
